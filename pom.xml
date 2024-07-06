@@ -6,11 +6,6 @@
 	<artifactId>core</artifactId>
 	<version>4.3</version>
 	<name>Processing Core</name>
-	<properties>
-		<sonar.projectKey>micycle1_processing-core-4</sonar.projectKey>
-		<sonar.organization>micycle</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-	</properties>
 	<build>
 		<sourceDirectory>processing4\core\src</sourceDirectory>
 		<testSourceDirectory>processing4\core\test\</testSourceDirectory>
@@ -27,7 +22,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.0</version>
+				<version>3.13.0</version>
 				<configuration>
 					<release>17</release>
 					<encoding>UTF-8</encoding>
@@ -40,7 +35,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>3.6.0</version>
 				<executions>
 					<execution>
 						<id>add-source</id>
@@ -65,7 +60,7 @@
 				<!-- Create sources.jar -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>3.2.1</version>
+				<version>3.3.1</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
@@ -78,7 +73,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.4.1</version>
+				<version>3.7.0</version>
 				<configuration>
 					<doclint>none</doclint> <!--Prevent Javadoc incomplete errors -->
 				</configuration>
@@ -94,49 +89,10 @@
 			<plugin> <!-- for test running -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>3.3.0</version>
 			</plugin>
 		</plugins>
 	</build>
-	<profiles>
-		<profile>
-			<id>uber-jar</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-shade-plugin</artifactId>
-						<version>3.4.1</version>
-						<configuration>
-							<createDependencyReducedPom>false</createDependencyReducedPom>
-							<minimizeJar>true</minimizeJar>
-							<filters>
-								<filter>
-									<artifact>*:*</artifact>
-									<excludes>
-										<exclude>META-INF/**</exclude>
-										<exclude>**/*.png</exclude>
-										<exclude>**/*.svg</exclude>
-										<exclude>**/*.gif</exclude>
-										<exclude>**/*.jpg</exclude>
-										<exclude>**/*.properties</exclude>
-									</excludes>
-								</filter>
-							</filters>
-						</configuration>
-						<executions>
-							<execution>
-								<phase>package</phase>
-								<goals>
-									<goal>shade</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 	<repositories>
 		<repository>
 			<name>jogamp</name>
@@ -149,26 +105,31 @@
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-controls</artifactId>
 			<version>21</version>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.jogamp.jogl</groupId>
 			<artifactId>jogl-all-main</artifactId>
 			<version>2.5.0</version>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.jogamp.gluegen</groupId>
 			<artifactId>gluegen-rt-main</artifactId>
 			<version>2.5.0</version>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-svggen</artifactId>
 			<version>1.16</version>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-dom</artifactId>
 			<version>1.16</version>
+			<optional>true</optional>
 			<exclusions>
 				<exclusion>
 					<groupId>xml-apis</groupId>
@@ -179,6 +140,7 @@
 		<dependency>
 			<groupId>com.lowagie</groupId>
 			<artifactId>itext</artifactId>
+			<optional>true</optional>
 			<version>2.1.7</version>
 		</dependency>
 		<dependency>
